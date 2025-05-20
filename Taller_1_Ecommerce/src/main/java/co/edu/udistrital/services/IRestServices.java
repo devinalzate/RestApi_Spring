@@ -1,4 +1,11 @@
 package co.edu.udistrital.services;
 
-public interface IRestServices {
+import java.util.List;
+
+public interface IRestServices <T>{
+    List<T> getAll();
+    T AddNew(T t);
+    T getById(int id);
+    T Update(int id, T t);
+    void Delete(int id);
 }
