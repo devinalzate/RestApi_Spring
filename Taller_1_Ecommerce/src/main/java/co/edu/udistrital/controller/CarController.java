@@ -1,7 +1,0 @@
-package co.edu.udistrital.controller;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@RequestMapping("/taller_1/car/request")
-public class CarController {
-}

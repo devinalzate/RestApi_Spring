@@ -14,7 +14,7 @@ public class WebConfig {
     }
 
     @Bean
-    public RestTemplate restTamplate(RestTemplateBuilder builder){
+    public RestTemplate restTemplate(RestTemplateBuilder builder){
         return builder.rootUri("https://fakestoreapi.com/").build();
     }
 }
