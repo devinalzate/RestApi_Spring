@@ -1,5 +1,6 @@
 package co.edu.udistrital.services.impementation;
 
+import co.edu.udistrital.data.ProductDTO;
 import co.edu.udistrital.services.IRestServices;
 import co.edu.udistrital.data.ProductDTO;
 
@@ -8,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
+
 
 @Service
 public class ProductServiceImpl implements IRestServices<ProductDTO> {

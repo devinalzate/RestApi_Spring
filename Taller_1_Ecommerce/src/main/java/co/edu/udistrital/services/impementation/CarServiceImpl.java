@@ -10,7 +10,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class CarServiceImpl implements IRestServices {
+public class CarServiceImpl implements IRestServices<CartDTO> {
 
     private final RestTemplate restTemplate;
 
@@ -21,17 +21,17 @@ public class CarServiceImpl implements IRestServices {
     }
 
     @Override
-    public Object AddNew(Object o) {
+    public CartDTO AddNew(CartDTO o) {
         return null;
     }
 
     @Override
-    public Object getById(int id) {
+    public CartDTO getById(int id) {
         return null;
     }
 
     @Override
-    public Object Update(int id, Object o) {
+    public CartDTO Update(int id, CartDTO o) {
         return null;
     }
 

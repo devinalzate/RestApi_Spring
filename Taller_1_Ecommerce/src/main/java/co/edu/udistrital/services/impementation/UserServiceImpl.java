@@ -16,7 +16,8 @@ public class UserServiceImpl implements IRestServices<UsersDTO> {
 
     @Override
     public List<UsersDTO> getAll() {
-        return List.of();
+        UsersDTO usersDTO = restTemplate.getForObject("/users", UsersDTO.class);
+        return List.of(usersDTO);
     }
 
     @Override
