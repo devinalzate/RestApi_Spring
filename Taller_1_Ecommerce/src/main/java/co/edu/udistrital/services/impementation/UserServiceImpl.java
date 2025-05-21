@@ -3,6 +3,7 @@ package co.edu.udistrital.services.impementation;
 import co.edu.udistrital.data.UsersDTO;
 import co.edu.udistrital.services.IRestServices;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,27 +17,28 @@ public class UserServiceImpl implements IRestServices<UsersDTO> {
 
     @Override
     public List<UsersDTO> getAll() {
-        UsersDTO usersDTO = restTemplate.getForObject("/users", UsersDTO.class);
+        UsersDTO[] usersDTO = restTemplate.getForObject("/users", UsersDTO[].class);
         return List.of(usersDTO);
     }
 
     @Override
     public UsersDTO AddNew(UsersDTO usersDTO) {
-        return null;
+        return restTemplate.postForObject("/users", usersDTO, UsersDTO.class);
     }
 
     @Override
     public UsersDTO getById(int id) {
-        return null;
+        UsersDTO findUser = restTemplate.getForObject("/users/" + id, UsersDTO.class, id);
+        return findUser;
     }
 
     @Override
     public UsersDTO Update(int id, UsersDTO usersDTO) {
-        return null;
+        return restTemplate.postForObject("/users/" + id, usersDTO, UsersDTO.class);
     }
 
     @Override
     public void Delete(int id) {
-
+        restTemplate.delete("/users/" + id);
     }
 }
