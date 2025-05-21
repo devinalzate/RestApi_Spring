@@ -1,27 +1,29 @@
 package co.edu.udistrital.services.impementation;
 
+import co.edu.udistrital.data.ProductDTO;
 import co.edu.udistrital.services.IRestServices;
 
 import java.util.List;
 
-public class ProductServiceImpl implements IRestServices {
+public class ProductServiceImpl implements IRestServices<ProductDTO> {
+
     @Override
-    public List getAll() {
+    public List<ProductDTO> getAll() {
+        return List.of();
+    }
+
+    @Override
+    public ProductDTO AddNew(ProductDTO productDTO) {
         return null;
     }
 
     @Override
-    public Object AddNew(Object o) {
+    public ProductDTO getById(int id) {
         return null;
     }
 
     @Override
-    public Object getById(int id) {
-        return null;
-    }
-
-    @Override
-    public Object Update(int id, Object o) {
+    public ProductDTO Update(int id, ProductDTO productDTO) {
         return null;
     }
 
