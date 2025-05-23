@@ -18,6 +18,11 @@ public class UserController {
     @Qualifier("userServiceImpl")
     private final IRestServices<UsersDTO> userService;
 
+    @GetMapping("/")
+    public String index(Model model) {
+        return "index";
+    }
+
     @GetMapping("/getAll")
     public String getAllUsers(Model model) {
         model.addAttribute("users", userService.getAll());

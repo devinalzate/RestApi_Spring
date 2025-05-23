@@ -16,9 +16,6 @@
 
 </form>
 
-<form th:action="@{/api/v1/user/getAll}" method="get">
-    <button type="submit" id="listBtn" >Volver</button>
-</form>
 
 <!-- Resultado de búsqueda (si hay uno) -->
 <div th:if="${user != null}">
@@ -27,6 +24,10 @@
     <p>Username: <span th:text="${user.username}"></span></p>
     <p>Email: <span th:text="${user.email}"></span></p>
 </div>
+
+<form th:action="@{/api/v1/user/getAll}" method="get">
+    <button type="submit" id="listBtn" >Traer todos los usuarios</button>
+</form>
 
 <!-- Tabla de todos los usuarios -->
 <h2>Todos los usuarios</h2>
@@ -46,18 +47,5 @@
     </tr>
     </tbody>
 </table>
-
-<!-- Script para enviar el formulario solo con el botón -->
-<script>
-    document.getElementById("buscarBtn").addEventListener("click", function () {
-        const form = document.getElementById("buscarForm");
-        const input = document.getElementById("userId").value.trim();
-        if (input !== "") {
-            form.submit();
-        } else {
-            alert("Por favor, ingrese un ID.");
-        }
-    });
-</script>
 </body>
 </html>
