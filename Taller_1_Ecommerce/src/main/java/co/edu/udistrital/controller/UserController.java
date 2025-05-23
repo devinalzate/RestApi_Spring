@@ -5,20 +5,23 @@ import co.edu.udistrital.services.IRestServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/user")
 public class UserController {
     @Qualifier("userServiceImpl")
     private final IRestServices<UsersDTO> userService;
 
-    @GetMapping
-    public ResponseEntity<?> getAllUsers() {
-        return ResponseEntity.ok(userService.getAll());
+    @GetMapping("/getAll")
+    public String getAllUsers(Model model) {
+        model.addAttribute("users", userService.getAll());
+        return "index";
     }
 
     @PostMapping
@@ -26,9 +29,10 @@ public class UserController {
         return ResponseEntity.ok(userService.AddNew(usersDTO));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable int id) {
-        return ResponseEntity.ok(userService.getById(id));
+    @GetMapping("/buscar")
+    public String getUserById(@RequestParam int id, Model model) {
+        model.addAttribute("user", userService.getById(id));
+        return "index";
     }
 
     @PutMapping("/{id}")

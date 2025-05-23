@@ -3,7 +3,6 @@ package co.edu.udistrital.services.impementation;
 import co.edu.udistrital.data.UsersDTO;
 import co.edu.udistrital.services.IRestServices;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

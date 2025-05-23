@@ -1,11 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>Listado de Usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+<h1 th:text="${mensaje}">Listado de Usuarios</h1>
 
+<!-- Formulario para buscar usuario por ID -->
+<form id="buscarForm" th:action="@{/api/v1/user/buscar}" method="get">
+    <label for="userId">Buscar usuario por ID:</label>
+    <input type="text" name="id" id="userId" required>
+    <button type="submit" id="buscarBtn">Buscar</button>
+
+</form>
+
+<form th:action="@{/api/v1/user/getAll}" method="get">
+    <button type="submit" id="listBtn" >Volver</button>
+</form>
+
+<!-- Resultado de búsqueda (si hay uno) -->
+<div th:if="${user != null}">
+    <h2>Usuario encontrado:</h2>
+    <p>ID: <span th:text="${user.id}"></span></p>
+    <p>Username: <span th:text="${user.username}"></span></p>
+    <p>Email: <span th:text="${user.email}"></span></p>
+</div>
+
+<!-- Tabla de todos los usuarios -->
+<h2>Todos los usuarios</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Script para enviar el formulario solo con el botón -->
+<script>
+    document.getElementById("buscarBtn").addEventListener("click", function () {
+        const form = document.getElementById("buscarForm");
+        const input = document.getElementById("userId").value.trim();
+        if (input !== "") {
+            form.submit();
+        } else {
+            alert("Por favor, ingrese un ID.");
+        }
+    });
+</script>
 </body>
 </html>
