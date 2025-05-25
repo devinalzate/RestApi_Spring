@@ -5,15 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartDTO {
-    private int id;
-    private int userId;
-    private String date;
-    private ArrayList<ProductCartDTO> products;
+public class ProductCartDTO {
+    private int productId;
+    private int quantity;
 }
