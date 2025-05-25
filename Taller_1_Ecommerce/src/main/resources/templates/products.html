@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Productos</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <style>
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    .product-card {
+        border: 1px solid #ddd;
+        padding: 16px;
+        border-radius: 8px;
+        background-color: #fafafa;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        text-align: center;
+    }
+    .product-card img {
+        max-width: 120px;
+        max-height: 120px;
+    }
+    .product-title {
+        font-size: 1.1em;
+        margin: 8px 0;
+    }
+    .product-price {
+        color: #007bff;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+    .product-description {
+        font-size: 0.95em;
+        color: #555;
+        margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+<h1>Productos disponibles</h1>
+
+<div class="product-grid">
+  <div class="product-card" th:each="product : ${products}">
+    <img th:src="${product.image}" alt="Imagen producto"/>
+    <div class="product-title" th:text="${product.title}">Nombre del producto</div>
+    <div class="product-price" th:text="'$' + ${product.price}">Precio</div>
+    <div class="product-description" th:text="${product.description}">Descripción</div>
+    <div>
+      <span th:text="'Categoría: ' + ${product.category}"></span>
+    </div>
+  </div>
+</div>
+
+<a th:href="@{/}" style="display:block; margin-top:2em;">Volver al inicio</a>
+</body>
+</html>
