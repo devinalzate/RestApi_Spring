@@ -29,7 +29,7 @@ public class AuthController {
         try {
             AuthResponse response = authService.login(authRequest.getUsername(), authRequest.getPassword());
             if(response != null) {
-                model.addAttribute("prodcutosUsuarioLogeado", authRequest.getCart().getProducts());
+                model.addAttribute("productosUsuarioLogeado", authRequest.getCart().getProducts());
             }
             // Puedes guardar info del usuario en sesión si es necesario
             // session.setAttribute("token", response.getToken());
