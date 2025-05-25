@@ -1,12 +1,10 @@
 package co.edu.udistrital.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class UsersDTO {
-    private int id;
+public class AuthRequest {
     private String username;
-    private String email;
     private String password;
-    private CartDTO cart;
 }

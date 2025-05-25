@@ -16,26 +16,28 @@ public class UserServiceImpl implements IRestServices<UsersDTO> {
 
     @Override
     public List<UsersDTO> getAll() {
-        return List.of();
+        UsersDTO[] usersDTO = restTemplate.getForObject("/users", UsersDTO[].class);
+        return List.of(usersDTO);
     }
 
     @Override
     public UsersDTO AddNew(UsersDTO usersDTO) {
-        return null;
+        return restTemplate.postForObject("/users", usersDTO, UsersDTO.class);
     }
 
     @Override
     public UsersDTO getById(int id) {
-        return null;
+        UsersDTO findUser = restTemplate.getForObject("/users/" + id, UsersDTO.class, id);
+        return findUser;
     }
 
     @Override
     public UsersDTO Update(int id, UsersDTO usersDTO) {
-        return null;
+        return restTemplate.postForObject("/users/" + id, usersDTO, UsersDTO.class);
     }
 
     @Override
     public void Delete(int id) {
-
+        restTemplate.delete("/users/" + id);
     }
 }
