@@ -3,7 +3,10 @@ package co.edu.udistrital.controller;
 import co.edu.udistrital.data.AuthRequest;
 import co.edu.udistrital.data.AuthResponse;
 import co.edu.udistrital.data.UsersDTO;
+<<<<<<< Updated upstream
 import co.edu.udistrital.services.IRestServices;
+=======
+>>>>>>> Stashed changes
 import co.edu.udistrital.services.impementation.AuthServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,10 +28,16 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute AuthRequest authRequest, Model model) {
+    public String login(@ModelAttribute UsersDTO authRequest, Model model) {
         try {
             AuthResponse response = authService.login(authRequest.getUsername(), authRequest.getPassword());
+<<<<<<< Updated upstream
             if(response != null) {
+=======
+
+            if(response != null) {
+                model.addAttribute("prodcutosUsuarioLogeado", authRequest.getCart().getProducts());
+>>>>>>> Stashed changes
             }
             // Puedes guardar info del usuario en sesión si es necesario
             // session.setAttribute("token", response.getToken());
