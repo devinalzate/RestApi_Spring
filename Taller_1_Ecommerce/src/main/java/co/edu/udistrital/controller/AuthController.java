@@ -2,6 +2,8 @@ package co.edu.udistrital.controller;
 
 import co.edu.udistrital.data.AuthRequest;
 import co.edu.udistrital.data.AuthResponse;
+import co.edu.udistrital.data.UsersDTO;
+import co.edu.udistrital.services.IRestServices;
 import co.edu.udistrital.services.impementation.AuthServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,11 +28,12 @@ public class AuthController {
     public String login(@ModelAttribute AuthRequest authRequest, Model model) {
         try {
             AuthResponse response = authService.login(authRequest.getUsername(), authRequest.getPassword());
-
+            if(response != null) {
+            }
             // Puedes guardar info del usuario en sesión si es necesario
             // session.setAttribute("token", response.getToken());
 
-            //model.addAttribute("user", response); // opcional
+            model.addAttribute("userLoged", response); // opcional
             return "/index"; // o la página principal tras login
         } catch (Exception e) {
             e.printStackTrace();
