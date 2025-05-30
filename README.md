@@ -1,5 +1,12 @@
 # Taller_1_SpringACM
 
+# Integrantes
+
+### Devin Alzate - 20231020214
+### Santiago Chavarro - 20231020219
+### Santiago Rodriguez Reyes - 20231020089
+
+
 ## Project Overview
 
 This Spring Boot application is an e-commerce platform that integrates with FakeStoreAPI to provide product catalog, shopping cart, and user management functionalities.
