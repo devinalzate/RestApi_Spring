@@ -19,6 +19,7 @@ public class AuthController {
     private final AuthServiceImpl authService;
     private final IRestServices<UsersDTO> userServices;
     private final IRestServices<CartDTO> cartServices;
+    private final IRestServices<ProductDTO> productServices;
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -37,6 +38,8 @@ public class AuthController {
             // session.setAttribute("token", response.getToken());
             UsersDTO[] users = userServices.getAll().toArray(new UsersDTO[0]);
             CartDTO[] carts = cartServices.getAll().toArray(new CartDTO[0]);
+            ProductDTO[] productos = productServices.getAll().toArray(new ProductDTO[0]);
+            ArrayList<ProductDTO> productosEnviados = new ArrayList<>();
             for(UsersDTO user : users){
                 if (user.getUsername().equals(authRequest.getUsername()) &&
                         user.getPassword().equals(authRequest.getPassword())) {
@@ -44,6 +47,14 @@ public class AuthController {
                         if (cart.getUserId() == user.getId()){
                             model.addAttribute("userLoged", user);
                             model.addAttribute("products", cart.getProducts());
+                            for(ProductDTO product : productos){
+                                for(ProductCartDTO productLog : cart.getProducts()){
+                                    if(product.getId() == productLog.getProductId()){
+                                        productosEnviados.add(product);
+                                    }
+                                }
+                            }
+                            model.addAttribute("productsEnviados", productosEnviados);
                         }
                     }
                 }

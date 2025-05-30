@@ -85,19 +85,19 @@
         <table>
             <thead>
             <tr>
-                <th>Producto</th>
+                <th>Nombre</th>
                 <th>Categoría</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="producto : ${products}">
-                <td th:text="${producto.productId}">Nombre</td>
-                <td th:text="${producto.quantity}">Categoría</td>
-<!--                <td th:text="${producto.price}">Precio</td>-->
-<!--                <td th:text="${producto.quantity}">Cantidad</td>-->
-            </tr>
+                <tr th:each="producto, iterStat : ${productsEnviados}">
+                    <td th:text="${producto.getTitle()}">Nombre</td>
+                    <td th:text="${producto.getCategory()}">Categoría</td>
+                    <td th:text="${producto.getPrice()}">Precio</td>
+                    <td th:text="${products[iterStat.index].quantity}">Cantidad</td>
+                </tr>
             </tbody>
         </table>
     </div>
