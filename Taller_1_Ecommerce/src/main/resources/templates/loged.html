@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        .search-result, .user-table, .form-section {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Bienvenido</h1>
+
+    <!-- Info del usuario -->
+    <div th:if="${userLoged != null}">
+        <h2>Información del Usuario</h2>
+        <p><strong>ID:</strong> <span th:text="${userLoged.id}">ID</span></p>
+        <p><strong>Username:</strong> <span th:text="${userLoged.username}">Usuario</span></p>
+        <p><strong>Email:</strong> <span th:text="${userLoged.email}">correo@example.com</span></p>
+    </div>
+
+    <!-- Carrito de compras and #lists.isNotEmpty(userLoged.cart.products)-->
+    <div th:if="${products != null }">
+        <h2>Carrito de Compras</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto, iterStat : ${productsEnviados}">
+                    <td th:text="${producto.getTitle()}">Nombre</td>
+                    <td th:text="${producto.getCategory()}">Categoría</td>
+                    <td th:text="${producto.getPrice()}">Precio</td>
+                    <td th:text="${products[iterStat.index].quantity}">Cantidad</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<!--or #lists.isEmpty(userLoged.cart.products)-->
+    <div th:if="${products == null }">
+        <p>Tu carrito está vacío.</p>
+    </div>
+
+    <!-- Cerrar sesión -->
+    <form th:action="@{/auth/login}" method="get">
+        <button type="submit">Cerrar sesión</button>
+    </form>
+</div>
+</body>
+</html>

@@ -111,7 +111,6 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Password</th>
                 <th>Email</th>
             </tr>
             </thead>
@@ -119,7 +118,6 @@
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.username}"></td>
-                <td th:text="${user.password}"></td>
                 <td th:text="${user.email}"></td>
             </tr>
             </tbody>
@@ -150,6 +148,10 @@
     <!-- Botón para ir al login -->
     <form th:action="@{/auth/login}" method="get">
         <button type="submit" id="login">Iniciar sesión</button>
+    </form>
+
+    <form th:action="@{/products}" method="get">
+        <button type="submit" id="products">Ver Todos Los Productos</button>
     </form>
 </div>
 
